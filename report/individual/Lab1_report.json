@@ -1,0 +1,19 @@
+SEED=5584 · thử thách #0
+Bộ kiểm tra: 6/6 đạt
+  ✅ 1.1 vectorize
+  ✅ 1.2 sigmoid / predict_proba
+  ✅ 1.3 train_logreg
+  ✅ 1.4 metrics
+  ✅ 2.1 build_mlp
+  ✅ 2.2 train_mlp
+
+Dự đoán đã ghi:
+  [23:23:57] ml_f1: F1 khoảng 0.88 - 0.92, Precision cao hơn Recall vì dữ liệu bị lệch lớp (spam ít) và mô hình chỉ bắt các từ khóa spam rõ ràng nên ít đoán nhầm ham thành spam nhưng dễ bỏ sót tin spam tinh vi
+  [23:24:00] ml_lr: lr=0.001 thì learning rate quá nhỏ khiến loss giảm rất chậm và chưa hội tụ sau 300 epoch; lr=50 thì learning rate quá lớn khiến bước nhảy vượt qua điểm cực tiểu, loss dao động mạnh hoặc phân kỳ/phát nổ
+  [23:24:19] dl_curve: Val loss sẽ không giảm mãi mà sau vài epoch sẽ bắt đầu tăng dần (overfitting). MLP sẽ có F1 xấp xỉ hoặc chỉ nhỉnh hơn một chút so với logistic regression do dùng chung biểu diễn Bag-of-Words đơn giản
+  [23:24:23] dl_relu: Nếu bỏ ReLU, tích của 2 ma trận tuyến tính liên tiếp (W2 * W1) vẫn chỉ là một phép biến đổi tuyến tính, tương đương với mạng 1 lớp / logistic regression. F1 sẽ tương đương hoặc hơi thấp hơn do tối ưu phức tạp hơn
+Thiếu dự đoán: ['emb_search', 'emb_tricky', 'llm_models', 'llm_fewshot', 'tradeoff', 'hard_eval']
+
+                                  f1  f1_SUB
+1. BoW + LogReg (tự code)     0.905   0.857
+2. BoW + MLP (deep learning)  0.961   0.947
